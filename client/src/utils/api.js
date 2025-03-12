@@ -13,7 +13,7 @@ export const fetchEvents = async () => {
 };
 
 export const fetchClubs = async () => {
-  const response = await axios.get(`${API_URL}/clubs`);
+  const response = await axios.get(`${API_URL}/auth/clubs`); // Updated endpoint
   return response.data;
 };
 
@@ -28,6 +28,6 @@ export const createEvent = async (data) => {
 };
 
 export const createClub = async (data) => {
-  const response = await axios.post(`${API_URL}/clubs`, data);
+  const response = await axios.post(`${API_URL}/auth/register`, data); // Updated endpoint
   return response.data;
 };

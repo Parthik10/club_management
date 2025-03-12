@@ -6,7 +6,6 @@ const cors = require("cors");
 
 // Importing routes
 const announcementRouter = require("./routes/announcementRouter.js");
-const clubRouter = require("./routes/clubRouter.js");
 const eventRouter = require("./routes/eventRouter.js");
 const eventRegistrationRouter = require("./routes/eventRegistrationRouter.js");
 const paymentRouter = require("./routes/paymentRouter.js");
@@ -27,7 +26,6 @@ app.use(express.json());
 
 // Use the routers
 app.use("/api/announcements", announcementRouter);
-app.use("/api/clubs", clubRouter);
 app.use("/api/events", eventRouter);
 app.use("/api/event-registrations", eventRegistrationRouter);
 app.use("/api/payments", paymentRouter);

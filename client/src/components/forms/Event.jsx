@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography } from '@mui/material';
+import { TextField, Button, Container, Typography, Snackbar, Alert } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { createEvent } from '../../utils/api';
 
 function Event() {
@@ -14,6 +15,9 @@ function Event() {
     eventId: '',
     registrationFees: 0
   });
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,9 +27,12 @@ function Event() {
     e.preventDefault();
     try {
       await createEvent(formData);
-      // Handle success (e.g., show a success message, clear the form, etc.)
+      setOpen(true);
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (error) {
-      // Handle error (e.g., show an error message)
+      setError('Event creation failed. Please try again.');
     }
   };
 
@@ -114,6 +121,12 @@ function Event() {
           Create Event
         </Button>
       </form>
+      <Snackbar open={open} autoHideDuration={2000} onClose={() => setOpen(false)}>
+        <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+          Event created successfully!
+        </Alert>
+      </Snackbar>
+      {error && <Alert severity="error">{error}</Alert>}
     </Container>
   );
 }

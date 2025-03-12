@@ -1,21 +1,14 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth'; // Custom hook to get auth status and user role
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Use AuthContext
 
-const ProtectedRoute = ({ element: Component, ...rest }) => {
-  const { isAuthenticated, userRole } = useAuth();
+const ProtectedRoute = ({ element }) => {
+  const { isAuthenticated } = useAuth();
 
-  return (
-    <Route
-      {...rest}
-      element={
-        isAuthenticated && userRole === 'admin' ? (
-          <Component />
-        ) : (
-          <Navigate to="/" />
-        )
-      }
-    />
+  return isAuthenticated ? (
+    element
+  ) : (
+    <Navigate to="/login" /> // Redirect to login page if not authenticated
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography } from '@mui/material';
+import { TextField, Button, Container, Typography, Snackbar, Alert } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { createClub } from '../../utils/api';
 
 function ClubRegister() {
@@ -9,6 +10,9 @@ function ClubRegister() {
     clubHead: '',
     logo: ''
   });
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,9 +22,12 @@ function ClubRegister() {
     e.preventDefault();
     try {
       await createClub(formData);
-      // Handle success (e.g., show a success message, clear the form, etc.)
+      setOpen(true);
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (error) {
-      // Handle error (e.g., show an error message)
+      setError('Club registration failed. Please try again.');
     }
   };
 
@@ -64,6 +71,12 @@ function ClubRegister() {
           Register Club
         </Button>
       </form>
+      <Snackbar open={open} autoHideDuration={2000} onClose={() => setOpen(false)}>
+        <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+          Club registered successfully!
+        </Alert>
+      </Snackbar>
+      {error && <Alert severity="error">{error}</Alert>}
     </Container>
   );
 }
