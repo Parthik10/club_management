@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Snackbar, Alert } from '@mui/material';
+import { TextField, Button, Card, Typography, Snackbar, Alert,Grid , InputAdornment, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { createEvent } from '../../utils/api';
+import { AccountCircle, Title, Description, Event as EventIcon, AccessTime, LocationOn, Image, ConfirmationNumber, MonetizationOn } from '@mui/icons-material';
+import imgEvent from '../../assets/event.jpg';
 
 function Event() {
   const [formData, setFormData] = useState({
@@ -37,7 +39,16 @@ function Event() {
   };
 
   return (
-    <Container>
+    <Card sx={{  mx: 1, my: 3, p: 3,  }}>
+      <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+    <Box>
+
+      <img src={imgEvent} alt="event" style={{ width: '100%', height: 'auto', margin: '9rem 0' , }} />
+    </Box>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
       <Typography variant="h4">Create Event</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -47,6 +58,13 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Title"
@@ -55,6 +73,13 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Title />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Description"
@@ -63,6 +88,13 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Description />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Date"
@@ -73,6 +105,13 @@ function Event() {
           fullWidth
           margin="normal"
           InputLabelProps={{ shrink: true }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EventIcon />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Time"
@@ -83,6 +122,13 @@ function Event() {
           fullWidth
           margin="normal"
           InputLabelProps={{ shrink: true }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccessTime />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Venue"
@@ -91,6 +137,13 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <LocationOn />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Poster URL"
@@ -99,6 +152,13 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Image />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Event ID"
@@ -107,6 +167,13 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <ConfirmationNumber />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Registration Fees"
@@ -116,18 +183,28 @@ function Event() {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <MonetizationOn />
+              </InputAdornment>
+            ),
+          }}
         />
         <Button type="submit" variant="contained" color="primary">
           Create Event
         </Button>
       </form>
+</Grid>
+</Grid>
+
       <Snackbar open={open} autoHideDuration={2000} onClose={() => setOpen(false)}>
         <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
           Event created successfully!
         </Alert>
       </Snackbar>
       {error && <Alert severity="error">{error}</Alert>}
-    </Container>
+    </Card>
   );
 }
 
