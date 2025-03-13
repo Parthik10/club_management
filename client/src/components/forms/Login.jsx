@@ -29,7 +29,11 @@ function Login() {
         navigate('/dashboard');
       }, 2000);
     } catch (error) {
-      setError('Login failed. Please check your credentials.');
+      if (error.code === 'ERR_NETWORK') {
+        setError('Network error, please try again later.'); // Handle network error
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
     }
   };
 

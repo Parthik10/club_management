@@ -12,7 +12,11 @@ function Announcements() {
         const data = await fetchAnnouncements();
         setAnnouncements(data);
       } catch (err) {
-        setError(err.message); // Set error message
+        if (err.code === 'ERR_NETWORK') {
+          setError('Network error, please try again later.'); // Handle network error
+        } else {
+          setError(err.message); // Set error message
+        }
       }
     };
     getAnnouncements();

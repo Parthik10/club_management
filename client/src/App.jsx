@@ -24,7 +24,7 @@ function App() {
         <Route path="/clubs" element={<Clubs />} />
         <Route path="/clubs/:id" element={<ClubDetails />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/create-event" element={<ProtectedRoute element={<CreateEvent />} />} />
+        <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/create-announcement" element={<Announcement />} />
         <Route path="/create-event-form" element={<Event />} />
         <Route path="/login" element={<Login />} />
