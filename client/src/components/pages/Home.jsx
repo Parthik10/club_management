@@ -1,6 +1,12 @@
-import React from 'react';
-import { useAuth } from '../../hooks/useAuth'; // Custom hook to get auth status and user role
+import { Container } from '@mui/material'
+import React from 'react'
 
-const Home = () => <h1>Welcome to Club Management</h1>;
+function Home() {
+  return (
+    <Container maxWidth="lg" sx={{ mt: 10 }}>
+      <h1> yha bohot kuch krna h pr kia kre</h1>
+    </Container>
+  )
+}
 
-export default Home;
+export default Home

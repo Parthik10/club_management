@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { TextField, Button, Container, Typography } from '@mui/material';
+import React, { useState } from "react";
+import { FaCalendarAlt, FaEnvelope, FaDollarSign, FaCheckCircle, FaReceipt } from "react-icons/fa";
 
 function Payment() {
   const [formData, setFormData] = useState({
-    eventId: '',
-    userEmail: '',
-    amount: '',
-    status: '',
-    transactionId: ''
+    eventId: "",
+    userEmail: "",
+    amount: "",
+    status: "",
+    transactionId: "",
   });
 
   const handleChange = (e) => {
@@ -16,59 +16,40 @@ function Payment() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
+    console.log("Form Submitted", formData);
   };
 
   return (
-    <Container>
-      <Typography variant="h4">Create Payment</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Event ID"
-          name="eventId"
-          value={formData.eventId}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="User Email"
-          name="userEmail"
-          value={formData.userEmail}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Amount"
-          name="amount"
-          type="number"
-          value={formData.amount}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Status"
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Transaction ID"
-          name="transactionId"
-          value={formData.transactionId}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <Button type="submit" variant="contained" color="primary">
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Create Payment</h2>
+      <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm bg-white">
+        {[
+          { label: "Event ID", name: "eventId", type: "text", icon: <FaCalendarAlt /> },
+          { label: "User Email", name: "userEmail", type: "email", icon: <FaEnvelope /> },
+          { label: "Amount", name: "amount", type: "number", icon: <FaDollarSign /> },
+          { label: "Status", name: "status", type: "text", icon: <FaCheckCircle /> },
+          { label: "Transaction ID", name: "transactionId", type: "text", icon: <FaReceipt /> },
+        ].map(({ label, name, type, icon }) => (
+          <div className="mb-3" key={name}>
+            <label className="form-label">{label}</label>
+            <div className="input-group">
+              <span className="input-group-text">{icon}</span>
+              <input
+                type={type}
+                className="form-control"
+                name={name}
+                value={formData[name]}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+        ))}
+        <button type="submit" className="btn btn-dark w-100">
           Create Payment
-        </Button>
+        </button>
       </form>
-    </Container>
+    </div>
   );
 }
 

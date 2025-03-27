@@ -4,7 +4,7 @@ import EventCard from '../cards/EventCard';
 
 function Events() {
   const [events, setEvents] = useState([]);
-  const [error, setError] = useState(null); // Add state for error
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getEvents = async () => {
@@ -12,22 +12,22 @@ function Events() {
         const data = await fetchEvents();
         setEvents(data);
       } catch (err) {
-        if (err.code === 'ERR_NETWORK') {
-          setError('Network error, please try again later.'); // Handle network error
-        } else {
-          setError(err.message); // Set error message
-        }
+        setError(err.message);
       }
     };
     getEvents();
   }, []);
 
   return (
-    <div>
-      {error && <div>Error: {error}</div>} {/* Display error message */}
-      {events.map((event) => (
-        <EventCard key={event._id} event={event} />
-      ))}
+    <div className="container mt-5">
+      {error && <div className="alert alert-danger">Error: {error}</div>}
+      <div className="row">
+        {events.map((event) => (
+          <div key={event._id} className="col-md-4">
+            <EventCard event={event} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

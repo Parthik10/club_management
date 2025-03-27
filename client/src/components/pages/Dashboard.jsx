@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Avatar, Typography, Box, Badge, Divider, Grid, Container } from "@mui/material";
-import Announcements from "../forms/Announcement";
-import Event from "../forms/Event";
+import Announcements from '../forms/Announcement';
+import Event from '../forms/Event';
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -18,52 +17,37 @@ function Dashboard() {
   }
 
   return (
-    <Container maxWidth="" sx={{ my: 4 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={4}>
-          <Card sx={{ maxWidth: 300, mx: 3, my: 4, p: 3, textAlign: "left" }}>
-            {/* User Avatar Section */}
-            <Avatar
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="card dashboard-card">
+            <img
               src={user.logo}
-              sx={{ width: 120, height: 120, mx: "auto", mb: 2, border: "2px solid #000" }}
+              alt="User Avatar"
+              className="avatar"
             />
-            <Typography variant="h5">{user.name}</Typography>
-            <Badge
-              badgeContent="Admin"
-              color="secondary"
-              sx={{ my: 1, p: 1, borderRadius: 1, bgcolor: "grey.300" }}
-            />
-            <Divider sx={{ my: 2 }} />
-            {/* User Details */}
-            <Typography variant="h6" gutterBottom>Details</Typography>
-            <Box component="ul" sx={{ listStyle: "none", p: 0 }}>
-              {[
-                { label: "Club Name: ", value: user.clubName },
-                { label: "Club head: ", value: user.clubHead },
-                { label: "Username: ", value: user.name },
-                { label: "Email: ", value: user.email },
-                { label: "Status: ", value: "Active" },
-                { label: "Role: ", value: "Admin" },
-                { label: "", value: user.description },
-              ].map((item, index) => (
-                <Typography key={index} variant="body2" sx={{ mb: 1, alignItems: "start" }}>
-                  <strong>{item.label}</strong> {item.value}
-                </Typography>
-              ))}
-            </Box>
-          </Card>
-        </Grid>
-
-        <Grid item xs={8}>
+            <h5>{user.name}</h5>
+            <ul className="dashboard-details">
+              <li><strong>Club Name:</strong> {user.clubName}</li>
+              <li><strong>Club Head:</strong> {user.clubHead}</li>
+              <li><strong>Username:</strong> {user.name}</li>
+              <li><strong>Email:</strong> {user.email}</li>
+              <li><strong>Status:</strong> Active</li>
+              <li><strong>Role:</strong> Admin</li>
+              <li>{user.description}</li>
+            </ul>
+          </div>
+        </div>
+        <div className="col-md-8">
           <Announcements />
-        </Grid>
-      </Grid>
-
-      <Grid item xs={12}>
+        </div>
+      </div>
+      <div className="row mt-4">
+        <div className="col-12">
           <Event />
-      </Grid>
-
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }
 

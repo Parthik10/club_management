@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { login } from '../../utils/auth';
 import { useAuth } from '../../context/AuthContext';
 
@@ -30,7 +30,7 @@ function Login() {
       }, 2000);
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {
-        setError('Network error, please try again later.'); // Handle network error
+        setError('Network error, please try again later.');
       } else {
         setError('Login failed. Please check your credentials.');
       }
@@ -38,37 +38,56 @@ function Login() {
   };
 
   return (
-    <Container>
-      <Typography variant="h4">Login</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Password"
-          name="password"
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <Button type="submit" variant="contained" color="primary">
-          Login
-        </Button>
+    <div className="container mt-5" id="login-form">
+      <h2 className="text-center mb-4">Login</h2>
+      <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm bg-white">
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email</label>
+          <div className="input-group">
+            <span className="input-group-text">
+              <FaEnvelope />
+            </span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="Enter your email"
+            />
+          </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Password</label>
+          <div className="input-group">
+            <span className="input-group-text">
+              <FaLock />
+            </span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="Enter your password"
+            />
+          </div>
+        </div>
+        <button type="submit" className="btn btn-primary w-100">Login</button>
       </form>
-      <Snackbar open={open} autoHideDuration={2000} onClose={() => setOpen(false)}>
-        <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+      {open && (
+        <div className="alert alert-success mt-3" role="alert">
           Login successful!
-        </Alert>
-      </Snackbar>
-      {error && <Alert severity="error">{error}</Alert>}
-    </Container>
+        </div>
+      )}
+      {error && (
+        <div className="alert alert-danger mt-3" role="alert">
+          {error}
+        </div>
+      )}
+    </div>
   );
 }
 

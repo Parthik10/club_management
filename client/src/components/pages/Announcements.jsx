@@ -4,7 +4,7 @@ import AnnouncementCard from '../cards/AnnouncementCard';
 
 function Announcements() {
   const [announcements, setAnnouncements] = useState([]);
-  const [error, setError] = useState(null); // Add state for error
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getAnnouncements = async () => {
@@ -12,22 +12,23 @@ function Announcements() {
         const data = await fetchAnnouncements();
         setAnnouncements(data);
       } catch (err) {
-        if (err.code === 'ERR_NETWORK') {
-          setError('Network error, please try again later.'); // Handle network error
-        } else {
-          setError(err.message); // Set error message
-        }
+        setError(err.message);
       }
     };
     getAnnouncements();
   }, []);
 
   return (
-    <div>
-      {error && <div>Error: {error}</div>} {/* Display error message */}
-      {announcements.map((announcement) => (
-        <AnnouncementCard key={announcement._id} announcement={announcement} />
-      ))}
+    <div className="container mt-5">
+      {error && <div className="alert alert-danger">Error: {error}</div>}
+      
+      <div className="row">
+        {announcements.map((announcement) => (
+          <div key={announcement._id} className="col-md-4">
+            <AnnouncementCard announcement={announcement} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

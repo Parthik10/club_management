@@ -1,0 +1,418 @@
+*{
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+
+  
+  label{
+    color: #3c096c;
+  }
+
+/* -------------------------------------------------FORMS------------------------------------------------------------------------------------------  */
+
+/* ----------- Announcement Form ------------------------------ */
+body {
+    color: white;
+    background-color: #3c096c;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group-text {
+  background-color: #fff;
+  border-right: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+.input-group-text:hover {
+  transform: scale(1.1);
+}
+
+.form-control {
+  border-left: none;
+}
+
+.btn-dark {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.img-fluid {
+  max-height: 250px;
+  object-fit: cover;
+}
+
+button {
+  background-color: black;
+  color: white;
+}
+
+/* --------Event form--------------------------- */
+
+.form-container {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.form-container::before {
+  content: '';
+  background-size: cover;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  border-radius: 8px;
+}
+
+form {
+  position: relative;
+  z-index: 1;
+}
+
+.event-card {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  margin: 9rem 0;
+  border-radius: 8px;
+}
+
+.input-group-text {
+  background-color: #fff;
+  border-right: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+.input-group-text:hover {
+  transform: scale(1.1);
+}
+
+.form-control {
+  border-left: none;
+}
+
+.btn-dark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.alert {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ------------------Event Register ----------------------- */
+
+.register-card {
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.input-group-text {
+  background-color: #fff;
+  border-right: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+.input-group-text:hover {
+  transform: scale(1.1);
+}
+
+.rotate-icon {
+  transform: rotateY(360deg) scale(1.2);
+}
+
+.form-control {
+  border-left: none;
+}
+
+.btn-dark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.alert {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ------------------ Login Form ----------------------- */
+#login-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#login-form .form-label {
+  font-weight: bold;
+}
+
+#login-form .input-group-text {
+  background-color: #f8f9fa;
+  border-right: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+#login-form .input-group-text:hover {
+  transform: scale(1.1);
+}
+
+/* ------------------ Event Card ----------------------- */
+.event-card {
+  max-width: 100%;
+  min-width: 300px;
+  border: 1px solid black;
+  margin: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.event-card img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.event-card .card-body {
+  padding: 16px;
+}
+
+.event-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.event-card .card-text {
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+/* ---------------------------------------------------cards-------------------------------------- */
+/* ------------------ Club Card ----------------------- */
+.club-card {
+  max-width: 345px;
+  min-width: 300px;
+  border: 3px solid black;
+  margin: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.club-card img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.club-card .card-body {
+  padding: 16px;
+}
+
+.club-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.club-card .card-text {
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+/* ------------------ Announcement Card ----------------------- */
+.announcement-card {
+  max-width: 345px;
+  min-width: 300px;
+  border: 2px solid black;
+  margin: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.announcement-card .card-body {
+  padding: 16px;
+}
+
+.announcement-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.announcement-card .card-text {
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+/*-------------------------------------------------------- pages-------------------------------------------------- */
+/*------------------------------- General Layout Adjustments -------------------------*/
+.container {
+  margin-top: 2rem;
+}
+
+.card img {
+  object-fit: cover;
+}
+
+/* ------------------------------Header Adjustments ----------------------------------*/
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+ nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+ }
+ .glass-effect {
+    background: #2e124759;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  }
+.navbar-brand {
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: 450;
+  color: #7437a2 !important;
+  text-decoration: none !important;
+
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.nav-link {
+  color: white !important;
+  font-size: 1.2rem;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+.nav-link:hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: white;
+  visibility: visible;
+  transform: scaleX(1);
+  transition: all 0.3s ease-in-out;
+}
+ul {
+    list-style: none;
+  }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: white;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+.navbar-collapse {
+  justify-content: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+nav button {
+    padding: 0.5rem 1.5rem;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    border-color: #623686 !important;
+    color: #fff !important;
+    background-color: #934cce5e !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    text-decoration: none !important;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav button:hover {
+  transform: scale(1.1);
+}
+/*---------------------------- Avatar---------------------------------- */
+.avatar {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #000;
+  margin: 0 auto 1rem;
+}
+
+/*------------------------------- Dashboard Layout---------------------------------- */
+.dashboard-card {
+  max-width: 300px;
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: left;
+}
+
+.dashboard-details {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-details li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------------------------------------Responsive Adjustments-------------------------------------- */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+}

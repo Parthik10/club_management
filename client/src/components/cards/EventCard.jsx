@@ -1,33 +1,17 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 
 function EventCard({ event }) {
   return (
-    <Card sx={{ maxWidth: 345, border: '1px solid #ccc', margin: '16px' }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={event.poster}
-        alt={event.title}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {event.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {event.description}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Date: {new Date(event.date).toLocaleDateString()}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Time: {event.time}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Venue: {event.venue}
-        </Typography>
-      </CardContent>
-    </Card>
+    <div className="card event-card">
+      <img src={event.poster} className="card-img-top" alt={event.title} />
+      <div className="card-body">
+        <h5 className="card-title">{event.title}</h5>
+        <p className="card-text">{event.description}</p>
+        <p className="card-text">Date: {new Date(event.date).toLocaleDateString()}</p>
+        <p className="card-text">Time: {event.time}</p>
+        <p className="card-text">Venue: {event.venue}</p>
+      </div>
+    </div>
   );
 }
 

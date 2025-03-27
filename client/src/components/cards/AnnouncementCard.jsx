@@ -1,24 +1,15 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
 
 function AnnouncementCard({ announcement }) {
   return (
-    <Card sx={{ maxWidth: 345, border: '1px solid #ccc', margin: '16px' }}>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {announcement.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {announcement.message}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Club: {announcement.clubName}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Created By: {announcement.createdBy}
-        </Typography>
-      </CardContent>
-    </Card>
+    <div className="card announcement-card">
+      <div className="card-body">
+        <h5 className="card-title">{announcement.title}</h5>
+        <p className="card-text">{announcement.message}</p>
+        <p className="card-text">Club: {announcement.clubName}</p>
+        <p className="card-text">Created By: {announcement.createdBy}</p>
+      </div>
+    </div>
   );
 }
 

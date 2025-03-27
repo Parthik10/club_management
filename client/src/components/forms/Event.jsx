@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { TextField, Button, Card, Typography, Snackbar, Alert,Grid , InputAdornment, Box } from '@mui/material';
+// import { TextField, Button, Card, Typography, Snackbar, Alert,Grid , InputAdornment, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { createEvent } from '../../utils/api';
 import { AccountCircle, Title, Description, Event as EventIcon, AccessTime, LocationOn, Image, ConfirmationNumber, MonetizationOn } from '@mui/icons-material';
-import imgEvent from '../../assets/event.jpg';
 
 function Event() {
   const [formData, setFormData] = useState({
@@ -39,172 +38,58 @@ function Event() {
   };
 
   return (
-    <Card sx={{  mx: 1, my: 3, p: 3,  }}>
-      <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-    <Box>
 
-      <img src={imgEvent} alt="event" style={{ width: '100%', height: 'auto', margin: '9rem 0' , }} />
-    </Box>
-      </Grid>
+    <div className="container-fluid mt-4">
+    <div className="card event-card p-3">
+      <div className="row">
+        <div className="col-md-6">
+          <h4 className="mb-3">Create Event</h4>
+          <form onSubmit={handleSubmit}>
+            {[
+              { label: "Club Name", name: "clubName", icon: <AccountCircle /> },
+              { label: "Title", name: "title", icon: <Title /> },
+              { label: "Description", name: "description", icon: <Description /> },
+              { label: "Date", name: "date", icon: <EventIcon />, type: "date" },
+              { label: "Time", name: "time", icon: <AccessTime />, type: "time" },
+              { label: "Venue", name: "venue", icon: <LocationOn /> },
+              { label: "Poster URL", name: "poster", icon: <Image /> },
+              { label: "Event ID", name: "eventId", icon: <ConfirmationNumber /> },
+              { label: "Registration Fees", name: "registrationFees", icon: <MonetizationOn />, type: "number" },
+            ].map(({ label, name, icon, type = "text" }) => (
+              <div className="mb-3" key={name}>
+                <label className="form-label">{label}</label>
+                <div className="input-group">
+                  <span className="input-group-text">{icon}</span>
+                  <input
+                    type={type}
+                    className="form-control"
+                    name={name}
+                    value={formData[name]}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            ))}
 
-      <Grid item xs={12} md={6}>
-      <Typography variant="h4">Create Event</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Club Name"
-          name="clubName"
-          value={formData.clubName}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Title"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Title />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Description />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Date"
-          name="date"
-          type="date"
-          value={formData.date}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <EventIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Time"
-          name="time"
-          type="time"
-          value={formData.time}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccessTime />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Venue"
-          name="venue"
-          value={formData.venue}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LocationOn />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Poster URL"
-          name="poster"
-          value={formData.poster}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Image />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Event ID"
-          name="eventId"
-          value={formData.eventId}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ConfirmationNumber />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          label="Registration Fees"
-          name="registrationFees"
-          type="number"
-          value={formData.registrationFees}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <MonetizationOn />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Button type="submit" variant="contained" color="primary">
-          Create Event
-        </Button>
-      </form>
-</Grid>
-</Grid>
+            <button type="submit" className="btn btn-dark w-100">
+              Create Event
+            </button>
+          </form>
 
-      <Snackbar open={open} autoHideDuration={2000} onClose={() => setOpen(false)}>
-        <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
-          Event created successfully!
-        </Alert>
-      </Snackbar>
-      {error && <Alert severity="error">{error}</Alert>}
-    </Card>
+          {error && <div className="alert alert-danger mt-3">{error}</div>}
+          {open && (
+            <div className="alert alert-success mt-3">
+              Event created successfully!
+            </div>
+          )}
+        </div>
+
+      <div className="col-md-6">
+        <h1>do something here</h1>
+        </div>
+      </div>
+    </div>
+  </div>
   );
 }
 

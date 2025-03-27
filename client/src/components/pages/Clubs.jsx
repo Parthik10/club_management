@@ -4,7 +4,7 @@ import ClubCard from '../cards/ClubCard';
 
 function Clubs() {
   const [clubs, setClubs] = useState([]);
-  const [error, setError] = useState(null); // Add state for error
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getClubs = async () => {
@@ -12,22 +12,22 @@ function Clubs() {
         const data = await fetchClubs();
         setClubs(data);
       } catch (err) {
-        if (err.code === 'ERR_NETWORK') {
-          setError('Network error, please try again later.'); // Handle network error
-        } else {
-          setError(err.message); // Set error message
-        }
+        setError(err.message);
       }
     };
     getClubs();
   }, []);
 
   return (
-    <div>
-      {error && <div>Error: {error}</div>} {/* Display error message */}
-      {clubs.map((club) => (
-        <ClubCard key={club._id} club={club} />
-      ))}
+    <div className="container mt-5">
+      {error && <div className="alert alert-danger">Error: {error}</div>}
+      <div className="row">
+        {clubs.map((club) => (
+          <div key={club._id} className="col-md-4">
+            <ClubCard club={club} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
