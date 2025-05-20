@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-// import { TextField, Button, Card, Typography, Snackbar, Alert, InputAdornment, Grid } from '@mui/material';
+import {
+  Container,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Box,
+  Snackbar,
+  Alert,
+  InputAdornment,
+  Card,
+  CardMedia,
+  CardContent
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { createAnnouncement } from '../../utils/api';
 import AnnouncementOutlinedIcon from '@mui/icons-material/AnnouncementOutlined';
 import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import accImg from "../../assets/38767.jpg";
 import SendIcon from '@mui/icons-material/Send';
-
+import accImg from "../../assets/38767.jpg";
 
 function Announcement() {
   const [formData, setFormData] = useState({
@@ -38,98 +51,172 @@ function Announcement() {
     }
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Paper elevation={3} sx={{ p: 4 }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+              Create Announcement
+            </Typography>
+            <Typography variant="subtitle1" color="text.secondary" paragraph>
+              Share important updates with your club members
+            </Typography>
 
-    <div className="container mt-4">
-    <div className="card p-4 mx-auto">
-      <h4 className="mb-3">Create Announcement</h4>
-      <div className="row">
-        <div className="col-md-6">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Title</label>
-              <div className="input-group">
-                <span className="input-group-text">
-                  <AnnouncementOutlinedIcon />
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <TextField
+                fullWidth
+                label="Title"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                margin="normal"
+                required
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AnnouncementOutlinedIcon color="primary" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-            <div className="mb-3">
-              <label className="form-label">Message</label>
-              <div className="input-group">
-                <span className="input-group-text">
-                  <LocalPostOfficeOutlinedIcon />
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+              <TextField
+                fullWidth
+                label="Message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                margin="normal"
+                required
+                multiline
+                rows={4}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocalPostOfficeOutlinedIcon color="primary" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-            <div className="mb-3">
-              <label className="form-label">Club Name</label>
-              <div className="input-group">
-                <span className="input-group-text">
-                  <Groups2OutlinedIcon />
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="clubName"
-                  value={formData.clubName}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+              <TextField
+                fullWidth
+                label="Club Name"
+                name="clubName"
+                value={formData.clubName}
+                onChange={handleChange}
+                margin="normal"
+                required
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Groups2OutlinedIcon color="primary" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-            <div className="mb-3">
-              <label className="form-label">Created By</label>
-              <div className="input-group">
-                <span className="input-group-text">
-                  <BorderColorOutlinedIcon />
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="createdBy"
-                  value={formData.createdBy}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+              <TextField
+                fullWidth
+                label="Created By"
+                name="createdBy"
+                value={formData.createdBy}
+                onChange={handleChange}
+                margin="normal"
+                required
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <BorderColorOutlinedIcon color="primary" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-            <button type="submit" className="btn btn-dark">
-              Create <SendIcon />
-            </button>
-          </form>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+                sx={{ mt: 3 }}
+                endIcon={<SendIcon />}
+              >
+                Create Announcement
+              </Button>
+            </Box>
 
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
-          {open && (
-            <div className="alert alert-success mt-3">Announcement created successfully!</div>
-          )}
-        </div>
-        <div className="col-md-6">
-          <img
-            src={accImg}
-            alt="Announcement"
-            className="img-fluid rounded"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                Announcement created successfully!
+              </Alert>
+            </Snackbar>
+
+            {error && (
+              <Alert severity="error" sx={{ mt: 2 }}>
+                {error}
+              </Alert>
+            )}
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Card 
+              sx={{ 
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+                overflow: 'hidden',
+                borderRadius: 2,
+                boxShadow: 3
+              }}
+            >
+              <CardMedia
+                component="img"
+                image={accImg}
+                alt="Announcement"
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: 300,
+                  objectFit: 'contain',
+                  transition: 'transform 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'scale(1.05)'
+                  }
+                }}
+              />
+              <CardContent
+                sx={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                  color: 'white',
+                  p: 3
+                }}
+              >
+                <Typography variant="h6" gutterBottom>
+                  Preview Your Announcement
+                </Typography>
+                <Typography variant="body2">
+                  {formData.title || 'Your announcement title will appear here'}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 
